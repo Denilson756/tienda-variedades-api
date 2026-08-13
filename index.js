@@ -1,0 +1,13 @@
+const express = require("express"); // Con esto definimos la variable express y con require llamamos a express para almacenarlo en esa variable.
+const app = express(); // App es un objeto en el que voy a construir todo, y hace llamado a la variable express que enrealidad es una función
+
+app.get("/",(req, res) => { 
+    res.send("Servidor funcionando correctamente"); // Con esto estamos definiendo una ruta
+});
+
+const PORT = 3000; // Almacenamos con esto el número de puerto en una variable para no repetirlo a cada rato
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`); // Esto hace que el servidor escuche peticiones, cualquiera que llegue del puerto 3000 y que no se apague
+});
+
