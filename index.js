@@ -15,3 +15,6 @@ app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`); // Esto hace que el servidor escuche peticiones, cualquiera que llegue del puerto 3000 y que no se apague
 });
 
+const usuarioRoutes = require("./routes/usuarioRoutes");
+app.use(express.json()); 
+app.use("/api/usuarios", usuarioRoutes);
