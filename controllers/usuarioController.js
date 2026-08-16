@@ -41,4 +41,43 @@ async function login(req, res) {
 
 }
 
-module.exports = {registrar, login};
+async function obtenerUsuarios(req, res) {
+    try {
+        const usuarios = await Usuario.find().select("-contraseña"); // Para que traiga todo a excepción de la contraseña
+        res.status(200).json(usuarios);
+
+        } catch (error) {
+            res.status(500).json({ mensaje: error.menssage});
+        }
+    }
+
+async function actualizarUsuario(req, res) {
+    try {
+        const usuarioActualizado = await Usuario.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {new : true}
+            ).select("-contraseña");
+        if (!usuarioActualizado){
+            return res.status(404).json({ mensaje: "Usuario no encontrado"});
+        }
+        res.status(200).json(usuarioActualizado);
+        }catch (error) {
+            res.status(500).json({mensaje: error.message});
+    }
+}
+
+async function eliminarUsuario(req,res) {
+    try{
+        const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id);
+        if (!usuarioEliminado) {
+            return res.status(404).json ({mensaje: "Usuario no encontrado"});
+        }
+        res.status(200).json({mensaje: "Usuario eliminado correctamente"});
+    } catch (error) {
+        res.status(500).json({mensaje: error.message});
+    }
+
+}
+
+module.exports = {registrar, login, obtenerUsuarios, actualizarUsuario,eliminarUsuario};
