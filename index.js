@@ -18,3 +18,6 @@ app.listen(PORT, () => {
 const usuarioRoutes = require("./routes/usuarioRoutes");
 app.use(express.json()); 
 app.use("/api/usuarios", usuarioRoutes);
+
+const productoRoutes = require("./routes/productoRoutes");
+app.use("/api/productos", productoRoutes);
