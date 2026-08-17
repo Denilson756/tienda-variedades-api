@@ -3,7 +3,7 @@ const Producto = require("../models/Producto");
 async function crearProducto (req,res) {
     try {
         const {nombre,descripcion,precio,categoria,stock} = req.body;
-        const nuevoProducto = await Producto.create({nombre, description, precio, categoria, stock});
+        const nuevoProducto = await Producto.create({nombre, descripcion, precio, categoria, stock});
         res.status(201).json(nuevoProducto);
     } catch (error) {
         res.status(500).json({mensaje: error.message});
