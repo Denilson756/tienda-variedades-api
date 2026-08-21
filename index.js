@@ -5,9 +5,11 @@ const express = require("express"); // Con esto definimos la variable express y 
 const app = express(); // App es un objeto en el que voy a construir todo, y hace llamado a la variable express que enrealidad es una función
 connectDB();
 
-app.get("/",(req, res) => { 
-    res.send("Servidor funcionando correctamente"); // Con esto estamos definiendo una ruta
-});
+//app.get("/",(req, res) => { 
+//    res.send("Servidor funcionando correctamente"); // Con esto estamos definiendo una ruta
+//});
+
+app.use(express.static("public")); 
 
 const PORT = 3000; // Almacenamos con esto el número de puerto en una variable para no repetirlo a cada rato
 
